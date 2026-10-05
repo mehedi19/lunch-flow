@@ -26,77 +26,17 @@ import {
   Share2,
   Check
 } from "lucide-react";
-
-export type LunchCategoryType = "regular" | "premium" | "diet";
-
-export type OfficeDepartment =
-  | "Software"
-  | "Backend"
-  | "Front-end"
-  | "Marketing"
-  | "Business"
-  | "Design"
-  | "UI/UX"
-  | "General";
-
-export interface CategoryPrices {
-  regular: number;
-  premium: number;
-  diet: number;
-}
-
-export interface Member {
-  id: string;
-  name: string;
-  department: OfficeDepartment;
-  contact: string;
-  depositBalance: number;
-  defaultCategory: LunchCategoryType;
-  isActive: boolean;
-}
-
-export interface LunchDayEntry {
-  hadLunch: boolean;
-  category: LunchCategoryType;
-  guestCount: number;
-  notes?: string;
-}
-
-export interface LunchExpense {
-  id: string;
-  date: string;
-  title: string;
-  amount: number;
-  category: "Catering Vendor" | "Groceries" | "Protein & Meat" | "Produce" | "Utilities & Chef";
-  paidBy: string;
-}
-
-export interface DepositRecord {
-  id: string;
-  memberId: string;
-  date: string;
-  amount: number;
-  note: string;
-}
-
-export interface MonthlyClosing {
-  monthKey: string;
-  closedAt: string;
-  totalExpenses: number;
-  totalLunches: number;
-  categoryPrices: CategoryPrices;
-  isLocked: boolean;
-}
-
-export const OFFICE_DEPARTMENTS: OfficeDepartment[] = [
-  "Software",
-  "Backend",
-  "Front-end",
-  "Marketing",
-  "Business",
-  "Design",
-  "UI/UX"
-];
+import {
+  OFFICE_DEPARTMENTS,
+  type LunchCategoryType,
+  type OfficeDepartment,
+  type CategoryPrices,
+  type Member,
+  type LunchDayEntry,
+  type LunchExpense,
+  type DepositRecord,
+  type MonthlyClosing
+} from "./constants";
 
 const STORAGE_KEY = "LUNCHFLOW_ENTERPRISE_V2";
 
@@ -932,6 +872,7 @@ export default function App() {
                   onClick={handleApplyUserDefaults}
                   disabled={isCurrentMonthLocked}
                   className="px-3 py-2 text-xs font-bold bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl transition flex items-center gap-1.5 shadow-xs disabled:opacity-50"
+                  title="Apply preferred categories for all members"
                 >
                   <Sparkles className="w-3.5 h-3.5 text-amber-500" />
                   <span>Auto-Fill User Defaults</span>
